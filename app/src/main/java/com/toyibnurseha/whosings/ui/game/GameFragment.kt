@@ -51,17 +51,23 @@ class GameFragment : Fragment() {
         gameAdapter = GameAdapter()
         setAdapter()
         getChartArtist()
+
+        binding.tvQuestion.text = resources.getString(R.string.question_1, questionNumber)
+
         viewModel.snippetLyric.observe(viewLifecycleOwner) {
             binding.tvLyrics.text = it?.text ?: ""
         }
+
         viewModel.matchCorrectness.observe(viewLifecycleOwner) { isCorrect ->
             isCorrect ?: return@observe
             matchCorrectness(isCorrect)
         }
+
         viewModel.score.observe(viewLifecycleOwner) {
             score = it
             binding.tvScore.text = "Current Score : $score"
         }
+
         selectArtist()
     }
 
@@ -95,12 +101,21 @@ class GameFragment : Fragment() {
     }
 
     private fun getChartArtist() {
+        showLoading(true)
         viewModel.getChartArtists(user).observe(viewLifecycleOwner) {
             if (it.data != null) {
+                showLoading(false)
                 gameAdapter.setData(it.data.toMutableList())
-                binding.tvQuestion.text = resources.getString(R.string.question_1, questionNumber)
                 questionNumber++
             }
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if(isLoading) {
+            binding.layoutLoading.visibility = View.VISIBLE
+        }else {
+            binding.layoutLoading.visibility = View.GONE
         }
     }
 

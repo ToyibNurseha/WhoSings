@@ -1,14 +1,12 @@
 package com.toyibnurseha.whosings.ui.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.toyibnurseha.whosings.R
 import com.toyibnurseha.whosings.databinding.FragmentLoginBinding
@@ -35,12 +33,13 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-        }
-
-        viewModel.bind(binding.etUsername)
+        onClickListener()
         getLoggedUser()
+        loginForm()
+    }
+
+    private fun loginForm() {
+        viewModel.bind(binding.etUsername)
         viewModel.filledUser.observe(viewLifecycleOwner) {
             if (it.name.isNotEmpty()) {
                 binding.btnLogin.run {
@@ -54,7 +53,9 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun onClickListener() {
         binding.btnLogin.setOnClickListener {
             viewModel.insertUser()
             viewModel.getLoggedUser().removeObservers(viewLifecycleOwner)
@@ -66,13 +67,13 @@ class LoginFragment : Fragment() {
         viewModel.getLoggedUser().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
-                    showLoading()
+                    showLoading(true)
                 }
                 is Resource.Success -> {
                     if (it.data != null) {
                         GlobalScope.launch(Dispatchers.Main) {
-                            delay(1000L)
-                            hideLoading()
+                            delay(1500L)
+                            showLoading(false)
                             findNavController().navigate(
                                 R.id.action_loginFragment_to_homeFragment,
                                 Bundle().apply {
@@ -82,21 +83,22 @@ class LoginFragment : Fragment() {
                             )
                         }
                     } else {
-                        hideLoading()
+                        showLoading(false)
                     }
                 }
                 is Resource.Error -> {
-                    hideLoading()
+                    showLoading(false)
                 }
             }
         }
     }
 
-    private fun hideLoading() {
-
+    private fun showLoading(isLoading: Boolean) {
+        if(isLoading) {
+            binding.layoutLoading.visibility = View.VISIBLE
+        }else {
+            binding.layoutLoading.visibility = View.GONE
+        }
     }
 
-    private fun showLoading() {
-
-    }
 }

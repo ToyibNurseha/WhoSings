@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -28,6 +29,15 @@ class Repository @Inject constructor(private val dao: WhoSingsDAO) {
 
         emit(result)
     }.flowOn(Dispatchers.IO)
+
+    fun updateUser(userEntity: UserEntity) = runBlocking {
+        kotlin.runCatching {
+            dao.updateUser(userEntity)
+        }.onFailure {
+        }.onSuccess {
+        }
+        return@runBlocking
+    }
 
     suspend fun insertUser(user: UserEntity) = flow {
 

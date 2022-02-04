@@ -43,6 +43,10 @@
         <action
             android:id="@+id/action_resultFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/resultFragment"/>
     </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"

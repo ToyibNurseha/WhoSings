@@ -8,6 +8,7 @@ import com.toyibnurseha.whosings.local.Artist
 import com.toyibnurseha.whosings.local.Snippet
 import com.toyibnurseha.whosings.repository.Repository
 import com.toyibnurseha.whosings.repository.WhoSingRepository
+import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_SCORE
 import com.toyibnurseha.whosings.utils.Resource
 import com.toyibnurseha.whosings.utils.toRandomTrack
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,7 +29,7 @@ class GameViewModel @ViewModelInject constructor(
     val score: MutableLiveData<Int> = MutableLiveData(0)
 
     fun getChartArtists(user: UserEntity) = liveData<Resource<List<Artist>>> {
-        if (chartPage <= 5) { // to limit the amount of quiz questions
+        if (chartPage <= MAX_SCORE) { // to limit the amount of quiz questions
             repo.getChartArtists(chartPage).collect {
                 it.data?.toRandomTrack()?.let { track ->
 

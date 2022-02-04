@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.toyibnurseha.whosings.R
@@ -13,13 +14,17 @@ import com.toyibnurseha.whosings.databinding.FragmentResultBinding
 import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_SCORE
 import com.toyibnurseha.whosings.utils.getMaxScore
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
+@ExperimentalCoroutinesApi
 class ResultFragment : Fragment() {
 
     private lateinit var binding: FragmentResultBinding
 
     private lateinit var user: UserEntity
+
+    private val viewModel: ResultViewModel by viewModels()
 
     private var score = 0
 
@@ -47,7 +52,12 @@ class ResultFragment : Fragment() {
             resources.getString(R.string.latest_score, user.scores.getMaxScore())
 
         binding.btnLogout.setOnClickListener {
-
+            viewModel.logout(user)
+            findNavController().navigate(
+                R.id.action_resultFragment_to_loginFragment,
+                null,
+                NavOptions.Builder().setPopUpTo(R.id.homeFragment, true).build()
+            )
         }
 
         binding.btnReplay.setOnClickListener {
@@ -68,7 +78,7 @@ class ResultFragment : Fragment() {
             binding.tvResult.text = resources.getString(R.string.you_lost, user.name)
         } else {
             //win
-            binding.ivResultLost.visibility = View.VISIBLE
+            binding.ivResultLost.visibility = View.GONE
             binding.tvResult.text = resources.getString(R.string.well_done, user.name)
         }
     }

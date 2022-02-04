@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
         android:layout_margin="@dimen/_16sdp"
-        android:text="Play Game"
+        android:text="@string/play_game"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_14ssp" />
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
         android:layout_margin="@dimen/_16sdp"
-        android:text="Leader Board"
+        android:text="@string/leader_board"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_14ssp" />

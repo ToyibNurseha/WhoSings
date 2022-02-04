@@ -5,11 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import com.toyibnurseha.whosings.R
 import com.toyibnurseha.whosings.db.model.UserEntity
 import com.toyibnurseha.whosings.databinding.FragmentResultBinding
 import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_SCORE
 import com.toyibnurseha.whosings.utils.getMaxScore
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResultFragment : Fragment() {
 
     private lateinit var binding: FragmentResultBinding
@@ -37,15 +42,22 @@ class ResultFragment : Fragment() {
 
         showAnimation()
 
-        binding.tvScore.text = "Your score is ${score.toString()}"
-        binding.tvHighestScore.text = "Highest Score is ${user.scores.getMaxScore()}"
+        binding.tvScore.text = resources.getString(R.string.your_score, score)
+        binding.tvHighestScore.text =
+            resources.getString(R.string.latest_score, user.scores.getMaxScore())
 
         binding.btnLogout.setOnClickListener {
 
         }
 
         binding.btnReplay.setOnClickListener {
-
+            findNavController().navigate(
+                R.id.action_resultFragment_to_gameFragment,
+                Bundle().apply {
+                    putSerializable("user", user)
+                },
+                NavOptions.Builder().setPopUpTo(R.id.resultFragment, true).build()
+            )
         }
     }
 
@@ -53,11 +65,11 @@ class ResultFragment : Fragment() {
         if (score != MAX_SCORE) {
             //lost
             binding.ivResultWin.visibility = View.GONE
-            binding.tvResult.text = "OHH, YOU LOST ${user.name}"
-        }else {
+            binding.tvResult.text = resources.getString(R.string.you_lost, user.name)
+        } else {
             //win
             binding.ivResultLost.visibility = View.VISIBLE
-            binding.tvResult.text = "WELL DONE ${user.name}"
+            binding.tvResult.text = resources.getString(R.string.well_done, user.name)
         }
     }
 

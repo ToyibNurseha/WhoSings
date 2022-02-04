@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
-        android:text="Question - 1"
+        android:text="@string/question_1"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
-        android:text="Current Score : 0"
+        android:text="@string/current_score_0"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
-        android:text="Lyrics Here"
+        android:text="@string/lyrics_here"
         android:textSize="@dimen/_18ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,27 +42,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
-        tools:listitem="@layout/item_artist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLyrics"
         tools:itemCount="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLyrics" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnScores"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_40sdp"
-        android:paddingStart="@dimen/_32sdp"
-        android:paddingEnd="@dimen/_32sdp"
-        android:layout_marginTop="@dimen/_32sdp"
-        android:text="Next Questions"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:cornerRadius="10dp"
-        android:textSize="@dimen/_14ssp"
-        app:backgroundTint="@color/indigo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvArtists" />
+        tools:listitem="@layout/item_artist" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,7 +44,6 @@ class GameViewModel @ViewModelInject constructor(
         } else {
             user.scores.add(ScoreEntity(score = score.value!!))
             repo.updateUser(user)
-            score.value = score.value?.minus(1)
             matchCorrectness.value = false
         }
     }
@@ -61,7 +60,6 @@ class GameViewModel @ViewModelInject constructor(
         } else {
             user.scores.add(ScoreEntity(score = score.value!!))
             repo.updateUser(user)
-            score.value = score.value?.minus(1)
             false
         }
     }

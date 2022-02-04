@@ -31,6 +31,7 @@ class GameFragment : Fragment() {
     private var TAG = "taggame"
 
     private var score = 0
+    private var questionNumber = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,6 +98,8 @@ class GameFragment : Fragment() {
         viewModel.getChartArtists(user).observe(viewLifecycleOwner) {
             if (it.data != null) {
                 gameAdapter.setData(it.data.toMutableList())
+                binding.tvQuestion.text = resources.getString(R.string.question_1, questionNumber)
+                questionNumber++
             }
         }
     }

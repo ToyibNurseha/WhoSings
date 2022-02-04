@@ -37,6 +37,10 @@ class HomeFragment : Fragment() {
                 putSerializable("user", user)
             })
         }
+
+        binding.btnScores.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_leaderboardFragment)
+        }
     }
 
 }

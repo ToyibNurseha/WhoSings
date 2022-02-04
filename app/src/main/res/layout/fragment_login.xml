@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/black"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,18 +35,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        android:hint="Username"
+        android:hint="@string/username"
+        app:layout_constraintBottom_toTopOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivLogin"
-        app:layout_constraintBottom_toTopOf="@id/btnLogin"
         app:startIconDrawable="@drawable/ic_username">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_36sdp"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,10 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
         android:layout_margin="@dimen/_16sdp"
-        android:text="Login"
-        android:textSize="@dimen/_14ssp"
+        android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
         app:backgroundTint="@color/sea_buckthorn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

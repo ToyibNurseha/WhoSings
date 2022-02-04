@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -36,5 +39,14 @@
         android:id="@+id/resultFragment"
         android:name="com.toyibnurseha.whosings.ui.result.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" />
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resultFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.toyibnurseha.whosings.ui.leaderboard.LeaderboardFragment"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
 </navigation>

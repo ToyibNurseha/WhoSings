@@ -5,20 +5,20 @@
     android:id="@+id/cvArtist"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_8sdp"
     android:layout_marginStart="@dimen/_32sdp"
+    android:layout_marginTop="@dimen/_8sdp"
     android:layout_marginEnd="@dimen/_32sdp"
     app:cardBackgroundColor="@color/indigo"
-    app:cardElevation="@dimen/_6sdp"
     app:cardCornerRadius="10dp"
+    app:cardElevation="@dimen/_6sdp"
     app:contentPadding="@dimen/_12sdp">
 
     <TextView
         android:id="@+id/tvArtist"
-        android:text="John Lenon"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/artist"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp" />
 
 </androidx.cardview.widget.CardView>

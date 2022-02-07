@@ -6,10 +6,12 @@ import com.toyibnurseha.whosings.BuildConfig
 import com.toyibnurseha.whosings.api.ApiService
 import com.toyibnurseha.whosings.db.WhoSingsDAO
 import com.toyibnurseha.whosings.db.WhoSingsDatabase
+import com.toyibnurseha.whosings.manager.TimerManager
 import com.toyibnurseha.whosings.repository.WhoSingRepository
 import com.toyibnurseha.whosings.utils.ApiHelper
 import com.toyibnurseha.whosings.utils.ApiMapper
 import com.toyibnurseha.whosings.utils.Constant.Companion.BASE_URL
+import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_TIMER
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -72,5 +74,8 @@ object AppModule {
     @Singleton
     @Provides
     fun provideDAO(db: WhoSingsDatabase) = db.whoSingsDAO()
+
+    @Provides
+    fun provideTimer() = TimerManager(MAX_TIMER)
 
 }

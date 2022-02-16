@@ -21,4 +21,6 @@
     <string name="current_score_0">Current Score : 0</string>
     <string name="lyrics_here">Lyrics Here</string>
     <string name="next_questions">Next Questions</string>
+    <string name="current_score">Current Score : %d</string>
+    <string name="home">Home</string>
 </resources>

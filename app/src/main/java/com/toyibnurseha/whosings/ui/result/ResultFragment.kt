@@ -69,6 +69,16 @@ class ResultFragment : Fragment() {
                 NavOptions.Builder().setPopUpTo(R.id.resultFragment, true).build()
             )
         }
+
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_resultFragment_to_homeFragment,
+                Bundle().apply {
+                    putSerializable("user", user)
+                },
+                NavOptions.Builder().setPopUpTo(R.id.resultFragment, true).build()
+            )
+        }
     }
 
     private fun showAnimation() {

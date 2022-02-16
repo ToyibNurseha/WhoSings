@@ -40,7 +40,7 @@
             android:id="@+id/timerPr"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_15sdp"
+            android:layout_height="@dimen/_12sdp"
             android:background="@color/white"
             android:progressBackgroundTint="@color/white"
             android:progressTint="@color/indigo" />

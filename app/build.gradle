@@ -107,6 +107,9 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
     // Lottie Animation
-    implementation "com.airbnb.android:lottie:3.4.0"
+    implementation "com.airbnb.android:lottie:4.2.2"
+
+    // Chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 }

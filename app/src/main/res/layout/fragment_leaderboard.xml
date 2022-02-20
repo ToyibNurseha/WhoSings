@@ -31,44 +31,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvRank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:text="@string/rank"
-        app:layout_constraintEnd_toStartOf="@id/guidelinePositionLeft"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLeaderboard" />
-
-    <TextView
-        android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:text="@string/username"
-        app:layout_constraintEnd_toStartOf="@id/guidelinePositionRight"
-        app:layout_constraintStart_toStartOf="@id/guidelinePositionLeft"
-        app:layout_constraintTop_toBottomOf="@id/tvLeaderboard" />
-
-    <TextView
-        android:id="@+id/tvScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:text="@string/score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guidelinePositionRight"
-        app:layout_constraintTop_toBottomOf="@id/tvLeaderboard" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvScore"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chartBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_24sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvLeaderboard"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUsername"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_score" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

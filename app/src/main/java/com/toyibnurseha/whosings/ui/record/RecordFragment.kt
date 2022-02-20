@@ -27,7 +27,6 @@ class RecordFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentRecordBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -38,12 +37,22 @@ class RecordFragment : Fragment() {
     }
 
     private fun setupData() {
-        user?.scores?.let { recordAdapter.setData(it) }
+        if (user?.scores != null) {
+            showNoDataAnimation()
+        } else {
+            user?.scores?.let { recordAdapter.setData(it) }
+        }
         binding.rvScore.apply {
             adapter = recordAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
             isNestedScrollingEnabled = false
         }
+    }
+
+    private fun showNoDataAnimation() {
+        binding.noDataLayout.visibility = View.VISIBLE
+        binding.layoutContent.visibility = View.GONE
     }
 
 }

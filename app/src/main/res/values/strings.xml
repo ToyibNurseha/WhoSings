@@ -28,4 +28,5 @@
     <string name="your_score_record">Your Score Record</string>
     <string name="date">Date</string>
     <string name="order">Order</string>
+    <string name="you_haven_t_play_any_games_yet">You haven\'t play any games yet</string>
 </resources>

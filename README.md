@@ -32,11 +32,11 @@ This app is based on MVVM architecture and a repository pattern.
 
 ## Shout out to those who share their artworks for free
 
-[Amit Chaudary](https://www.figma.com/@beaefdbb_9052_4) for Inspired the Quiz Design App
-[WestActon.2D](https://lottiefiles.com/dxk7htkd95) for Astronout Loading Animation
-[Artemiy](https://lottiefiles.com/AlexError404) for Sad Shiba Animation
-[Ravi Sharma](https://lottiefiles.com/90547-trophy-animation) for Winning Trophy Animation
-[Agustinus ST)(https://lottiefiles.com/1vsqhhgk8n) Empty Data Animation
+-[Amit Chaudary](https://www.figma.com/@beaefdbb_9052_4) for Inspired the Quiz Design App
+-[WestActon.2D](https://lottiefiles.com/dxk7htkd95) for Astronout Loading Animation
+-[Artemiy](https://lottiefiles.com/AlexError404) for Sad Shiba Animation
+-[Ravi Sharma](https://lottiefiles.com/90547-trophy-animation) for Winning Trophy Animation
+-[Agustinus ST)(https://lottiefiles.com/1vsqhhgk8n) Empty Data Animation
 
 Correct Answer sound
 https://www.youtube.com/watch?v=1QWJ3BG7uyg&list=PLpRdkxKT-b1Scya299BfgsAOaWSrH6T_c&index=26

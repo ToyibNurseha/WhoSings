@@ -6,18 +6,15 @@ import com.toyibnurseha.whosings.db.model.ScoreEntity
 import com.toyibnurseha.whosings.db.model.UserEntity
 import com.toyibnurseha.whosings.local.Artist
 import com.toyibnurseha.whosings.local.Snippet
-import com.toyibnurseha.whosings.repository.Repository
 import com.toyibnurseha.whosings.repository.WhoSingRepository
 import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_SCORE
-import com.toyibnurseha.whosings.utils.Resource
 import com.toyibnurseha.whosings.utils.toRandomTrack
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
-
+@ExperimentalCoroutinesApi
 class GameViewModel @ViewModelInject constructor(
-    private val repo: WhoSingRepository,
-    private val userRepo: Repository
+    private val repo: WhoSingRepository
 ) : ViewModel() {
 
     private var chartPage = 1
@@ -28,7 +25,7 @@ class GameViewModel @ViewModelInject constructor(
 
     val score: MutableLiveData<Int> = MutableLiveData(0)
 
-    fun getChartArtists(user: UserEntity) = liveData<Resource<List<Artist>>> {
+    fun getChartArtists(user: UserEntity) = liveData {
         if (chartPage <= MAX_SCORE) { // to limit the amount of quiz questions
             repo.getChartArtists(chartPage).collect {
                 it.data?.toRandomTrack()?.let { track ->
@@ -50,19 +47,20 @@ class GameViewModel @ViewModelInject constructor(
     }
 
     @ExperimentalCoroutinesApi
-    fun selectArtist(artist: Artist, user: UserEntity) {
+    fun selectArtist(artist: Artist) {
         artist.track ?: return
         snippetLyric.value ?: return
-
+        chartPage++
         matchCorrectness.value = if (artist.track!!.id == snippetLyric.value!!.trackId) {
-            chartPage++
             score.value = score.value!! + 1
             true
         } else {
-            user.scores.add(ScoreEntity(score = score.value!!))
-            repo.updateUser(user)
             false
         }
     }
 
+    fun updateScore(quizScore: Int, user: UserEntity) {
+        user.scores.add(ScoreEntity(score = quizScore))
+        repo.updateUser(user)
+    }
 }

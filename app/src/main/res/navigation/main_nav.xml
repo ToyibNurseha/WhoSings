@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_leaderboardFragment"
             app:destination="@id/leaderboardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_recordFragment"
+            app:destination="@id/recordFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -56,4 +59,9 @@
         android:name="com.toyibnurseha.whosings.ui.leaderboard.LeaderboardFragment"
         android:label="fragment_leaderboard"
         tools:layout="@layout/fragment_leaderboard" />
+    <fragment
+        android:id="@+id/recordFragment"
+        android:name="com.toyibnurseha.whosings.ui.record.RecordFragment"
+        android:label="fragment_record"
+        tools:layout="@layout/fragment_record" />
 </navigation>

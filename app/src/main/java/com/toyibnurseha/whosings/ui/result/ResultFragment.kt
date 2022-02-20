@@ -12,6 +12,7 @@ import com.toyibnurseha.whosings.R
 import com.toyibnurseha.whosings.db.model.UserEntity
 import com.toyibnurseha.whosings.databinding.FragmentResultBinding
 import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_SCORE
+import com.toyibnurseha.whosings.utils.getLastScore
 import com.toyibnurseha.whosings.utils.getMaxScore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -47,7 +48,9 @@ class ResultFragment : Fragment() {
 
         binding.tvScore.text = resources.getString(R.string.your_score, score)
         binding.tvHighestScore.text =
-            resources.getString(R.string.latest_score, user?.scores?.getMaxScore())
+            resources.getString(R.string.highest_score_is, user?.scores?.getMaxScore())
+        binding.tvLastScore.text =
+            resources.getString(R.string.latest_score, user?.scores?.getLastScore())
 
         binding.btnLogout.setOnClickListener {
             user?.let { userData -> viewModel.logout(userData) }

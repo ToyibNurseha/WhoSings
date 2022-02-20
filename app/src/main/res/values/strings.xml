@@ -23,4 +23,9 @@
     <string name="next_questions">Next Questions</string>
     <string name="current_score">Current Score : %d</string>
     <string name="home">Home</string>
+    <string name="highest_score_is">Your highest Score : %d</string>
+    <string name="game_records">Game Records</string>
+    <string name="your_score_record">Your Score Record</string>
+    <string name="date">Date</string>
+    <string name="order">Order</string>
 </resources>

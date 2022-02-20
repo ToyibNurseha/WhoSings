@@ -6,35 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnPlay"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_48sdp"
-        android:layout_margin="@dimen/_16sdp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/play_game"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14ssp"
-        app:backgroundTint="@color/indigo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnScores"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_48sdp"
-        android:layout_margin="@dimen/_16sdp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/leader_board"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14ssp"
-        app:backgroundTint="@color/sea_buckthorn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnPlay" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_margin="@dimen/_16sdp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/play_game"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:backgroundTint="@color/indigo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRecord"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_margin="@dimen/_16sdp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/game_records"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:backgroundTint="@color/indigo"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnScores"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_margin="@dimen/_16sdp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/leader_board"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:backgroundTint="@color/sea_buckthorn"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_margin="@dimen/_16sdp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/logout"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:backgroundTint="@color/sea_buckthorn"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

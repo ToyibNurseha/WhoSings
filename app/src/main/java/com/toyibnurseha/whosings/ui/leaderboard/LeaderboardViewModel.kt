@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.collect
 @ExperimentalCoroutinesApi
 class LeaderboardViewModel @ViewModelInject constructor(private val repo: Repository) : ViewModel() {
 
-    fun getUsers() = liveData<Resource<List<UserEntity>>> {
+    fun getUsers() = liveData {
         repo.getUsers().collect {
             emit(it)
         }

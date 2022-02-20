@@ -1,6 +1,7 @@
 package com.toyibnurseha.whosings.ui.game
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.toyibnurseha.whosings.interfaces.ITimer
 import com.toyibnurseha.whosings.manager.TimerManager
 import com.toyibnurseha.whosings.ui.GameAdapter
 import com.toyibnurseha.whosings.utils.Constant
+import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_SCORE
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -33,12 +35,14 @@ class GameFragment : Fragment(), ITimer {
     private var user: UserEntity? = null
     private var score = 0
     private var questionNumber = 1
+    private var mediaPlayer: MediaPlayer? = null
 
     @Inject
     lateinit var quizTimer: TimerManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        gameAdapter = GameAdapter()
         user = arguments?.getParcelable("user")
     }
 
@@ -57,7 +61,7 @@ class GameFragment : Fragment(), ITimer {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        gameAdapter = GameAdapter()
+        playBackSound()
         setAdapter()
         getChartArtist()
 
@@ -85,23 +89,31 @@ class GameFragment : Fragment(), ITimer {
     private fun matchCorrectness(isCorrect: Boolean) {
         if (isCorrect) {
             user?.let { viewModel.getChartArtists(it).removeObservers(viewLifecycleOwner) }
+            playCorrectSound()
             getChartArtist()
         } else {
-            findNavController().navigate(
-                R.id.action_gameFragment_to_resultFragment,
-                Bundle().apply {
-                    putParcelable("user", user)
-                    putInt("score", score)
-                },
-                NavOptions.Builder().setPopUpTo(R.id.gameFragment, true).build()
-            )
+            playWrongSound()
+            if (questionNumber <= MAX_SCORE) {
+                user?.let { viewModel.getChartArtists(it).removeObservers(viewLifecycleOwner) }
+                getChartArtist()
+            } else {
+                user?.let { viewModel.updateScore(score, it) }
+                findNavController().navigate(
+                    R.id.action_gameFragment_to_resultFragment,
+                    Bundle().apply {
+                        putParcelable("user", user)
+                        putInt("score", score)
+                    },
+                    NavOptions.Builder().setPopUpTo(R.id.gameFragment, true).build()
+                )
+            }
         }
     }
 
     private fun selectArtist() {
         gameAdapter.setOnItemClickListener { artist ->
             quizTimer.cancel()
-            user?.let { userData -> viewModel.selectArtist(artist, userData) }
+            user?.let { viewModel.selectArtist(artist) }
         }
     }
 
@@ -154,6 +166,29 @@ class GameFragment : Fragment(), ITimer {
         super.onResume()
         if (quizTimer.isFinished()) {
             matchCorrectness(false)
+        }
+    }
+
+    private fun playBackSound(){
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.quiz_backsound)
+        mediaPlayer!!.start()
+    }
+
+    private fun playCorrectSound() {
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.correct_answer)
+        mediaPlayer!!.start()
+    }
+
+    private fun playWrongSound() {
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.wrong_answer)
+        mediaPlayer!!.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if(mediaPlayer != null) {
+            mediaPlayer!!.release()
+            mediaPlayer = null
         }
     }
 

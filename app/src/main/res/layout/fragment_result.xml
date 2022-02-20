@@ -46,7 +46,7 @@
         style="@style/largeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:text="@string/well_done"
         android:textColor="@color/sea_buckthorn"
         android:textSize="@dimen/_24sdp"
@@ -60,7 +60,7 @@
         style="@style/largeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:text="@string/your_score"
         android:textColor="@color/sea_buckthorn"
         android:textSize="@dimen/_16ssp"
@@ -72,19 +72,30 @@
         android:id="@+id/tvHighestScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:text="@string/latest_score"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="@string/highest_score_is"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvScore" />
+
+    <TextView
+        android:id="@+id/tvLastScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="@string/latest_score"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHighestScore" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnReplay"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_48sdp"
         android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:fontFamily="@font/roboto"
         android:text="@string/retry"
@@ -95,7 +106,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHighestScore" />
+        app:layout_constraintTop_toBottomOf="@id/tvLastScore" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnHome"

@@ -39,7 +39,7 @@ class LeaderboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvScore.apply {
             adapter = leaderboardAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(requireContext())
         }
         viewModel.getUsers().observe(viewLifecycleOwner) {
             if(it.data != null) {

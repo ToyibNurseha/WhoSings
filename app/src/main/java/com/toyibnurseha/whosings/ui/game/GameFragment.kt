@@ -61,7 +61,6 @@ class GameFragment : Fragment(), ITimer {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        playBackSound()
         setAdapter()
         getChartArtist()
 
@@ -151,6 +150,7 @@ class GameFragment : Fragment(), ITimer {
     override fun onDetach() {
         super.onDetach()
         quizTimer.cancel()
+        releaseMediaPlayer()
     }
 
     override fun onTimerFinish() {
@@ -166,12 +166,8 @@ class GameFragment : Fragment(), ITimer {
         super.onResume()
         if (quizTimer.isFinished()) {
             matchCorrectness(false)
+            releaseMediaPlayer()
         }
-    }
-
-    private fun playBackSound(){
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.quiz_backsound)
-        mediaPlayer!!.start()
     }
 
     private fun playCorrectSound() {
@@ -184,12 +180,19 @@ class GameFragment : Fragment(), ITimer {
         mediaPlayer!!.start()
     }
 
-    override fun onStop() {
-        super.onStop()
+    private fun releaseMediaPlayer() {
         if(mediaPlayer != null) {
+            mediaPlayer!!.stop()
+            mediaPlayer!!.reset()
             mediaPlayer!!.release()
             mediaPlayer = null
         }
     }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+
 
 }

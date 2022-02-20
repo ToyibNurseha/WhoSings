@@ -37,10 +37,10 @@ class RecordFragment : Fragment() {
     }
 
     private fun setupData() {
-        if (user?.scores != null) {
-            showNoDataAnimation()
-        } else {
+        if (user?.scores!!.isNotEmpty()) {
             user?.scores?.let { recordAdapter.setData(it) }
+        } else {
+            showNoDataAnimation()
         }
         binding.rvScore.apply {
             adapter = recordAdapter

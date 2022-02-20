@@ -42,6 +42,7 @@ class RecordFragment : Fragment() {
         binding.rvScore.apply {
             adapter = recordAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+            isNestedScrollingEnabled = false
         }
     }
 

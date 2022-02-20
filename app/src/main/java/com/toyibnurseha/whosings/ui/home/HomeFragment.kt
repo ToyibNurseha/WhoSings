@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             user?.let { userData -> viewModel.logout(userData) }
             findNavController().navigate(
-                R.id.action_resultFragment_to_loginFragment,
+                R.id.action_homeFragment_to_loginFragment,
                 null,
                 NavOptions.Builder().setPopUpTo(R.id.homeFragment, true).build()
             )

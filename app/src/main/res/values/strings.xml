@@ -17,7 +17,7 @@
     <string name="login">Login</string>
     <string name="play_game">Play Game</string>
     <string name="leader_board">Leader Board</string>
-    <string name="question_1">Question - %d</string>
+    <string name="question_1">Question : %d</string>
     <string name="current_score_0">Current Score : 0</string>
     <string name="lyrics_here">Lyrics Here</string>
     <string name="next_questions">Next Questions</string>

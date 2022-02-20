@@ -45,7 +45,7 @@ fun List<ScoreEntity>.getMaxScore(): Int {
     } ?: 0
 }
 
-fun List<UserEntity>.toScoreDataList(@ApplicationContext context: Context): List<Score> {
+fun List<UserEntity>.toScoreDataList(): List<Score> {
 
     val result = mutableListOf<Score>()
 

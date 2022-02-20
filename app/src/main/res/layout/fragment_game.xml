@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/tvQuestion"
+        style="@style/largeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
@@ -18,6 +19,7 @@
 
     <TextView
         android:id="@+id/tvScore"
+        style="@style/largeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
@@ -33,8 +35,8 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toTopOf="@id/contentLayout"
-        app:layout_constraintVertical_bias="1"
-        app:layout_constraintTop_toBottomOf="@id/tvQuestion">
+        app:layout_constraintTop_toBottomOf="@id/tvQuestion"
+        app:layout_constraintVertical_bias="1">
 
         <ProgressBar
             android:id="@+id/timerPr"
@@ -43,7 +45,7 @@
             android:layout_height="@dimen/_12sdp"
             android:background="@color/white"
             android:progressBackgroundTint="@color/white"
-            android:progressTint="@color/indigo" />
+            android:progressTint="@color/sea_buckthorn" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -51,21 +53,24 @@
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvQuestion"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tvQuestion">
 
         <TextView
             android:id="@+id/tvLyrics"
+            style="@style/largeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_16sdp"
             android:text="@string/lyrics_here"
             android:textSize="@dimen/_18ssp"
+            android:textColor="@color/sea_buckthorn"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvArtists"

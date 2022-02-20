@@ -28,11 +28,9 @@ class GameFragment : Fragment(), ITimer {
     private lateinit var binding: FragmentGameBinding
 
     private val viewModel: GameViewModel by viewModels()
-
-    private lateinit var user: UserEntity
-
     private lateinit var gameAdapter: GameAdapter
 
+    private var user: UserEntity? = null
     private var score = 0
     private var questionNumber = 1
 
@@ -41,7 +39,7 @@ class GameFragment : Fragment(), ITimer {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        user = requireArguments().getSerializable("user") as UserEntity
+        user = arguments?.getParcelable("user")
     }
 
     override fun onCreateView(
@@ -86,13 +84,13 @@ class GameFragment : Fragment(), ITimer {
 
     private fun matchCorrectness(isCorrect: Boolean) {
         if (isCorrect) {
-            viewModel.getChartArtists(user).removeObservers(viewLifecycleOwner)
+            user?.let { viewModel.getChartArtists(it).removeObservers(viewLifecycleOwner) }
             getChartArtist()
         } else {
             findNavController().navigate(
                 R.id.action_gameFragment_to_resultFragment,
                 Bundle().apply {
-                    putSerializable("user", user)
+                    putParcelable("user", user)
                     putInt("score", score)
                 },
                 NavOptions.Builder().setPopUpTo(R.id.gameFragment, true).build()
@@ -101,9 +99,9 @@ class GameFragment : Fragment(), ITimer {
     }
 
     private fun selectArtist() {
-        gameAdapter.setOnItemClickListener {
+        gameAdapter.setOnItemClickListener { artist ->
             quizTimer.cancel()
-            viewModel.selectArtist(it, user)
+            user?.let { userData -> viewModel.selectArtist(artist, userData) }
         }
     }
 
@@ -116,20 +114,22 @@ class GameFragment : Fragment(), ITimer {
 
     private fun getChartArtist() {
         showLoading(true)
-        viewModel.getChartArtists(user).observe(viewLifecycleOwner) {
-            if (it.data != null) {
-                showLoading(false)
-                gameAdapter.setData(it.data.toMutableList())
-                questionNumber++
+        user?.let { userData ->
+            viewModel.getChartArtists(userData).observe(viewLifecycleOwner) {
+                if (it.data != null) {
+                    showLoading(false)
+                    gameAdapter.setData(it.data.toMutableList())
+                    questionNumber++
+                }
             }
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if(isLoading) {
+        if (isLoading) {
             binding.layoutLoading.visibility = View.VISIBLE
             binding.timerPr.visibility = View.GONE
-        }else {
+        } else {
             binding.layoutLoading.visibility = View.GONE
             binding.timerPr.visibility = View.VISIBLE
             quizTimer.startTimer()

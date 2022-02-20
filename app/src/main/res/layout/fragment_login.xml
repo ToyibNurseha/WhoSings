@@ -6,11 +6,13 @@
 
     <TextView
         android:id="@+id/tvLogin"
+        style="@style/largeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
         android:text="@string/login"
-        android:textColor="@color/black"
+        android:textColor="@color/sea_buckthorn"
+        android:textStyle="bold"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +46,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_36sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:fontFamily="@font/roboto"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -58,6 +61,8 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/roboto"
+        android:textStyle="bold"
         app:backgroundTint="@color/sea_buckthorn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

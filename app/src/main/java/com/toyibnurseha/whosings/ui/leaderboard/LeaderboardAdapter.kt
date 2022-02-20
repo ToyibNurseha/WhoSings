@@ -3,7 +3,6 @@ package com.toyibnurseha.whosings.ui.leaderboard
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.toyibnurseha.whosings.databinding.FragmentLeaderboardBinding
 import com.toyibnurseha.whosings.databinding.ItemScoreBinding
 import com.toyibnurseha.whosings.local.Score
 
@@ -14,7 +13,7 @@ class LeaderboardAdapter : RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>()
     fun setData(items: List<Score>) {
         scores.clear()
         scores.addAll(items)
-        notifyDataSetChanged()
+        notifyDataSetChanged() //because need to change the whole item list not specific item
     }
 
     override fun onCreateViewHolder(

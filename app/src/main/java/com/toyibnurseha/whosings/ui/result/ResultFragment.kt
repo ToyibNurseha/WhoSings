@@ -21,16 +21,14 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class ResultFragment : Fragment() {
 
     private lateinit var binding: FragmentResultBinding
-
-    private lateinit var user: UserEntity
-
     private val viewModel: ResultViewModel by viewModels()
 
+    private var user: UserEntity? = null
     private var score = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        user = requireArguments().getSerializable("user") as UserEntity
+        user = arguments?.getParcelable("user")
         score = requireArguments().getInt("score")
     }
 
@@ -49,10 +47,10 @@ class ResultFragment : Fragment() {
 
         binding.tvScore.text = resources.getString(R.string.your_score, score)
         binding.tvHighestScore.text =
-            resources.getString(R.string.latest_score, user.scores.getMaxScore())
+            resources.getString(R.string.latest_score, user?.scores?.getMaxScore())
 
         binding.btnLogout.setOnClickListener {
-            viewModel.logout(user)
+            user?.let { userData -> viewModel.logout(userData) }
             findNavController().navigate(
                 R.id.action_resultFragment_to_loginFragment,
                 null,
@@ -64,7 +62,7 @@ class ResultFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_resultFragment_to_gameFragment,
                 Bundle().apply {
-                    putSerializable("user", user)
+                    putParcelable("user", user)
                 },
                 NavOptions.Builder().setPopUpTo(R.id.resultFragment, true).build()
             )
@@ -74,7 +72,7 @@ class ResultFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_resultFragment_to_homeFragment,
                 Bundle().apply {
-                    putSerializable("user", user)
+                    putParcelable("user", user)
                 },
                 NavOptions.Builder().setPopUpTo(R.id.resultFragment, true).build()
             )
@@ -85,11 +83,11 @@ class ResultFragment : Fragment() {
         if (score != MAX_SCORE) {
             //lost
             binding.ivResultWin.visibility = View.GONE
-            binding.tvResult.text = resources.getString(R.string.you_lost, user.name)
+            binding.tvResult.text = resources.getString(R.string.you_lost, user?.name)
         } else {
             //win
             binding.ivResultLost.visibility = View.GONE
-            binding.tvResult.text = resources.getString(R.string.well_done, user.name)
+            binding.tvResult.text = resources.getString(R.string.well_done, user?.name)
         }
     }
 

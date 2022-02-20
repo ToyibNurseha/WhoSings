@@ -1,15 +1,13 @@
 package com.toyibnurseha.whosings.di
 
 import android.content.Context
-import android.provider.SyncStateContract
 import com.toyibnurseha.whosings.BuildConfig
 import com.toyibnurseha.whosings.api.ApiService
 import com.toyibnurseha.whosings.db.WhoSingsDAO
 import com.toyibnurseha.whosings.db.WhoSingsDatabase
 import com.toyibnurseha.whosings.manager.TimerManager
 import com.toyibnurseha.whosings.repository.WhoSingRepository
-import com.toyibnurseha.whosings.utils.ApiHelper
-import com.toyibnurseha.whosings.utils.ApiMapper
+import com.toyibnurseha.whosings.api.ApiMapper
 import com.toyibnurseha.whosings.utils.Constant.Companion.BASE_URL
 import com.toyibnurseha.whosings.utils.Constant.Companion.MAX_TIMER
 import dagger.Module

@@ -5,7 +5,7 @@ import com.toyibnurseha.whosings.db.model.UserEntity
 import com.toyibnurseha.whosings.db.WhoSingsDAO
 import com.toyibnurseha.whosings.local.Artist
 import com.toyibnurseha.whosings.local.Snippet
-import com.toyibnurseha.whosings.utils.ApiMapper
+import com.toyibnurseha.whosings.api.ApiMapper
 import com.toyibnurseha.whosings.utils.Constant.Companion.API_KEY
 import com.toyibnurseha.whosings.utils.Resource
 import com.toyibnurseha.whosings.utils.toArtistList
@@ -18,8 +18,6 @@ import javax.inject.Inject
 
 class WhoSingRepository @Inject constructor(private val api: ApiMapper, private val dao: WhoSingsDAO) {
 
-    val TAG = "repo"
-
     suspend fun getChartArtists(page: Int) = flow {
         var results : Resource<List<Artist>> = Resource.Loading()
         emit(results)
@@ -27,7 +25,7 @@ class WhoSingRepository @Inject constructor(private val api: ApiMapper, private 
         kotlin.runCatching {
             api.getChartTracks("top", page, 3, "id", 1, API_KEY)
         }.onFailure {
-            Log.e("GetMusicCharts", "getChartArtists error", )
+            Log.e("GetMusicCharts", "getChartArtists error", it)
             results = Resource.Error("an error occured")
         }.onSuccess {
             results = if (it.data != null) {

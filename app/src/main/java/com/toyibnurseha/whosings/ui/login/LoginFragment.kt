@@ -77,7 +77,7 @@ class LoginFragment : Fragment() {
                             findNavController().navigate(
                                 R.id.action_loginFragment_to_homeFragment,
                                 Bundle().apply {
-                                    putSerializable("user", it.data)
+                                    putParcelable("user", it.data)
                                 },
                                 NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build()
                             )

@@ -1,12 +1,15 @@
 package com.toyibnurseha.whosings.db.model
 
+import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.toyibnurseha.whosings.db.model.ScoreEntity
+import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 
 @Entity(tableName = "user")
+@Parcelize
 data class UserEntity(
 
     @PrimaryKey
@@ -19,4 +22,4 @@ data class UserEntity(
     @NonNull
     var scores: MutableList<ScoreEntity> = mutableListOf()
 
-) : Serializable
+) : Parcelable

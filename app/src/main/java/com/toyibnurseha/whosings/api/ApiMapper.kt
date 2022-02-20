@@ -1,5 +1,6 @@
-package com.toyibnurseha.whosings.utils
+package com.toyibnurseha.whosings.api
 
+import com.toyibnurseha.whosings.api.ApiHelper
 import com.toyibnurseha.whosings.api.ApiService
 import javax.inject.Inject
 

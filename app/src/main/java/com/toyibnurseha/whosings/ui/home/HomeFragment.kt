@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var user: UserEntity
+    private var user: UserEntity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,14 +27,14 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        user = requireArguments().getSerializable("user") as UserEntity
+        user = arguments?.getParcelable("user")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnPlay.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_gameFragment, Bundle().apply {
-                putSerializable("user", user)
+                putParcelable("user", user)
             })
         }
 

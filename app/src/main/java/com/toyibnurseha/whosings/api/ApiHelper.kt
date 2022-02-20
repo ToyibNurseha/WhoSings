@@ -1,5 +1,6 @@
-package com.toyibnurseha.whosings.utils
+package com.toyibnurseha.whosings.api
 
+import com.toyibnurseha.whosings.utils.Resource
 import retrofit2.Response
 
 abstract class ApiHelper {

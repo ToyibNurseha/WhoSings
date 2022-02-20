@@ -67,6 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUsername" />
+        app:layout_constraintTop_toBottomOf="@id/tvUsername"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_score" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

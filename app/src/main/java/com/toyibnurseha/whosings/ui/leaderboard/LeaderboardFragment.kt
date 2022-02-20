@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.toyibnurseha.whosings.R
 import com.toyibnurseha.whosings.databinding.FragmentLeaderboardBinding
 import com.toyibnurseha.whosings.utils.toScoreDataList
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +43,7 @@ class LeaderboardFragment : Fragment() {
         }
         viewModel.getUsers().observe(viewLifecycleOwner) {
             if(it.data != null) {
-                leaderboardAdapter.setData(it.data.toScoreDataList(requireContext()))
+                leaderboardAdapter.setData(it.data.toScoreDataList())
             }
         }
     }
